@@ -12,7 +12,6 @@ class Student
     int age;
 
 public:
-
     Student(string name, int age)
     {
         this->name = name;
@@ -21,17 +20,16 @@ public:
 
     ~Student()
     {
-        cout << "Object destroyed" << endl;
+        cout << "Object is destroyed" << endl;
     }
 };
 
 int main()
 {
-
-    Student s1("John", 20);
-    Student s2("Jane", 21);
-
+    Student s1("Aaditya", 20);
+    Student s2("Rahul", 21);
+    Student s3("Rohit", 22);
     return 0;
-}
 
+}
 // By Aaditya Bhatia
