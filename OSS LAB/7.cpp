@@ -1,9 +1,5 @@
-// Write a C++ program to create a simple banking system in which the initial halance and the rate of interest are read from the keyboard and these values are initialized using the constructor. The destructor member function is defined in this program to destroy the class object created using constructor member function. This program consists of following member functions
-// The member functions are as follows
-// 1. A function to take the input name of the person along with time frame.
-// 2. Return the balance after that time frame using the ROI.
+#include <bits/stdc++.h>
 
-#include <iostream>
 using namespace std;
 
 class Bank
@@ -22,20 +18,22 @@ public:
 
     void input()
     {
+        cin.ignore(); // Clear the newline character from the input buffer
         cout << "Enter the name of the person: ";
-        cin >> name;
-        cout << "Enter the time frame: ";
+        getline(cin, name);
+        cout << "Enter the time frame in years: ";
         cin >> time;
     }
 
     float calculate()
     {
-        return balance + (balance * rate * time);
+        float compoundInterest = balance * pow((1 + rate), time);
+        return compoundInterest;
     }
 
     ~Bank()
     {
-        cout << "Destructor called" << endl;
+        cout << "Destructor called for " << name << endl;
     }
 };
 
@@ -44,13 +42,12 @@ int main()
     float balance, rate;
     cout << "Enter the initial balance: ";
     cin >> balance;
-    cout << "Enter the rate of interest: ";
+    cout << "Enter the rate of interest (in decimal form, e.g., 0.05 for 5%): ";
     cin >> rate;
 
     Bank b(balance, rate);
     b.input();
-    cout << "The balance after " << b.calculate() << endl;
+    cout << "The balance after " << b.calculate() << " years is: " << b.calculate() << endl;
 
     return 0;
 }
-
