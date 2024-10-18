@@ -87,8 +87,8 @@ void show_memory_matrix(int memory_blocks[], int n)
 
 int main()
 {
-    int memory_blocks[MAX_BLOCKS] = {100, 500, 200, 300, 600};
-    int n = 5; // Number of memory blocks
+    int memory_blocks[MAX_BLOCKS] = {100, 500, 200, 300, 600, 700, 1000, 200, 300, 400};
+    int n = 10; // Number of memory blocks
 
     show_memory_matrix(memory_blocks, n);
 
