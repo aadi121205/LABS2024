@@ -50,7 +50,7 @@ int main()
 
     Bank b(balance, rate);
     b.input();
-    cout << "The balance after " << b.calculate() << " years is: " << b.calculate() << endl;
+    cout << "The balance is: " << b.calculate() << endl;
 
     return 0;
 }
