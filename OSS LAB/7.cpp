@@ -1,53 +1,43 @@
-#include <bits/stdc++.h>
+// Write a C++ program to perform dilfferent arithmetic operation such as addition, subtraction, division, modulus and multiplication using inline function.
 
+#include <iostream>
 using namespace std;
 
-class Bank
-{
-    string name;
-    float balance;
-    float rate;
-    float time;
+inline int add(int a, int b) {
+    return a + b;
+}
 
-public:
-    Bank(float b, float r)
-    {
-        balance = b;
-        rate = r;
-    }
+inline int subtract(int a, int b) {
+    return a - b;
+}
 
-    void input()
-    {
-        cin.ignore(); // Clear the newline character from the input buffer
-        cout << "Enter the name of the person: ";
-        getline(cin, name);
-        cout << "Enter the time frame in years: ";
-        cin >> time;
-    }
+inline int multiply(int a, int b) {
+    return a * b;
+}
 
-    float calculate()
-    {
-        float compoundInterest = balance * pow((1 + rate), time);
-        return compoundInterest;
-    }
+inline float divide(int a, int b) {
+    return static_cast<float>(a) / b;
+}
 
-    ~Bank()
-    {
-        cout << "Destructor called for " << name << endl;
-    }
-};
+inline int mod(int a, int b) {
+    return a % b;
+}
 
-int main()
-{
-    float balance, rate;
-    cout << "Enter the initial balance: ";
-    cin >> balance;
-    cout << "Enter the rate of interest (in decimal form, e.g., 0.05 for 5%): ";
-    cin >> rate;
+int main() {
+    int a, b;
+    cout << "Enter two numbers:" << endl;
+    cout << "a: ";
+    cin >> a;
+    cout << "b: ";
+    cin >> b;
 
-    Bank b(balance, rate);
-    b.input();
-    cout << "The balance after " << b.calculate() << " years is: " << b.calculate() << endl;
+    cout << "Addition: " << add(a, b) << endl;
+    cout << "Subtraction: " << subtract(a, b) << endl;
+    cout << "Multiplication: " << multiply(a, b) << endl;
+    cout << "Division: " << divide(a, b) << endl;
+    cout << "Modulus: " << mod(a, b) << endl;
 
     return 0;
 }
+
+// By Aaditya Bhatia

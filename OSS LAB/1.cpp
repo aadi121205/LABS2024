@@ -18,7 +18,7 @@ class Person {
 
 int main() {
     Person p1;
-    p1.name = "John";
+    p1.name = "Aadi";
     p1.age = 25;
     p1.display();
     return 0;

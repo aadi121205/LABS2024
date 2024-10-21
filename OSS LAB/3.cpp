@@ -38,7 +38,7 @@ public:
 
 int main()
 {
-    Book b1("The Alchemist", "Paulo Coelho", 500);
+    Book b1("The Satanic Verses", "Salman Rushdie", 500);
     Book b2 = b1;
 
     b1.display();

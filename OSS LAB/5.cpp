@@ -1,3 +1,6 @@
+// Create a class called *Employee" That has "Empnumber" and "Empname"" as data members and member functions getdataf ) to input data display() to output data. 
+// Write a main function to create an array of "Employee"" objects. Accept and print and accept the details of at Ieast 6 cmployees
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -41,3 +44,5 @@ int main() {
 
     return 0;
 }
+
+// By Aaditya Bhatia

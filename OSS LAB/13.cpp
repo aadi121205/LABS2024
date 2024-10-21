@@ -1,0 +1,1 @@
+// Write a program to aceept the student detail such as name and 3 different marks get_data0 method and display the name and average of marks using displayO method. Define a friend class for calculating the average of marks using the method mark_ avg()

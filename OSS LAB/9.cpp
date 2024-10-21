@@ -1,22 +1,58 @@
-// Write a program to return absolute value of variable types integer and float using function overloading
+// Write a C++ program to create a simple banking system in which the initial halance and the rate of interest are read from the keyboard and these values are initialized using the constructor. 
+// The destructor member function is defined in this program to destroy the class object created using constructor member function. This program consists of following member functions:
 
-#include <iostream>
+#include <bits/stdc++.h>
 
-int abs(int n) {
-    return n < 0 ? -n : n;
-}
+using namespace std;
 
-float abs(float n) {
-    return n < 0 ? -n : n;
-}
+class Bank
+{
+    string name;
+    float balance;
+    float rate;
+    float time;
 
-int main() {
-    int a = -5;
-    float b = -5.5;
+public:
+    Bank(float b, float r)
+    {
+        balance = b;
+        rate = r;
+    }
 
-    std::cout << "Absolute value of " << a << " is " << abs(a) << std::endl;
-    std::cout << "Absolute value of " << b << " is " << abs(b) << std::endl;
+    void input()
+    {
+        cin.ignore(); // Clear the newline character from the input buffer
+        cout << "Enter the name of the person: ";
+        getline(cin, name);
+        cout << "Enter the time frame in years: ";
+        cin >> time;
+    }
+
+    float calculate()
+    {
+        float compoundInterest = balance * pow((1 + rate), time);
+        return compoundInterest;
+    }
+
+    ~Bank()
+    {
+        cout << "Destructor called for " << name << endl;
+    }
+};
+
+int main()
+{
+    float balance, rate;
+    cout << "Enter the initial balance: ";
+    cin >> balance;
+    cout << "Enter the rate of interest (in decimal form, e.g., 0.05 for 5%): ";
+    cin >> rate;
+
+    Bank b(balance, rate);
+    b.input();
+    cout << "The balance after " << b.calculate() << " years is: " << b.calculate() << endl;
 
     return 0;
 }
 
+// By Aaditya Bhatia

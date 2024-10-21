@@ -1,78 +1,27 @@
+// Write a program to return absolute value of variable types integer and float using function overloading
+
 #include <iostream>
-#include <cstring>
+using namespace std;
 
-class String {
-private:
-    char* str;
-public:
-    String(const char* s = "") {
-        str = new char[strlen(s) + 1];
-        strcpy(str, s);
-    }
+int customAbs(int num) {
+    return num < 0 ? -num : num;
+}
 
-    // Copy constructor
-    String(const String& other) {
-        str = new char[strlen(other.str) + 1];
-        strcpy(str, other.str);
-    }
-
-    // String Copy
-    String& operator=(const String& other) {
-        if (this != &other) {
-            delete[] str;
-            str = new char[strlen(other.str) + 1];
-            strcpy(str, other.str);
-        }
-        return *this;
-    }
-
-    // Equality
-    bool operator==(const String& other) const {
-        return strcmp(str, other.str) == 0;
-    }
-
-    // Concatenation
-    String operator+(const String& other) const {
-        char* temp = new char[strlen(str) + strlen(other.str) + 1];
-        strcpy(temp, str);
-        strcat(temp, other.str);
-        String result(temp);
-        delete[] temp;
-        return result;
-    }
-
-    // Destructor
-    ~String() {
-        delete[] str;
-    }
-
-    // Getter
-    const char* getStr() const {
-        return str;
-    }
-};
+float customAbs(float num) {
+    return num < 0 ? -num : num;
+}
 
 int main() {
-    String s1 = "Hello";
-    String s2 = "Hello";
+    int num1;
+    float num2;
 
-    // String Copy
-    String s3 = s1;
+    cout << "Enter an integer: ";
+    cin >> num1;
+    cout << "Absolute value of " << num1 << " is " << customAbs(num1) << endl;
 
-    // Equality
-    if (s1 == s2) {
-        std::cout << "s1 and s2 are equal" << std::endl;
-    } else {
-        std::cout << "s1 and s2 are not equal" << std::endl;
-    }
-
-    // Concatenation
-    String s4 = s1 + s2;
-
-    std::cout << "s1: " << s1.getStr() << std::endl;
-    std::cout << "s2: " << s2.getStr() << std::endl;
-    std::cout << "s3: " << s3.getStr() << std::endl;
-    std::cout << "s4: " << s4.getStr() << std::endl;
+    cout << "Enter a float: ";
+    cin >> num2;
+    cout << "Absolute value of " << num2 << " is " << customAbs(num2) << endl;
 
     return 0;
 }

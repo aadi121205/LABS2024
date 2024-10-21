@@ -1,0 +1,1 @@
+// Write a program to accept five different numbers by creating a class called friendfuncl and friendfunc2 taking 2 and 3 arguments respectively and calculate the average of these numbers by passing obiect of the class to friend function
