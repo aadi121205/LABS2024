@@ -1,4 +1,4 @@
-#include <stdio.h>
+ #include <stdio.h>
 
 #define MAX_BLOCKS 100
 #define MAX_PROGRAMS 10
