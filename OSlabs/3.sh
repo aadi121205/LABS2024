@@ -3,5 +3,5 @@
 current_time=$(date +"%H")
   
 if [ "$current_time" -eq "08" ]; then
-  echo "It's 8 AM! Current date and time: $(date)"
+  echo "It's 8 AM!"
 fi
