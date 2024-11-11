@@ -1,57 +1,65 @@
-// The member functions are as follows 
-// 1. A function to take the input name of the person along with time frame.
-// 2. Return the balance after that time frame using the ROI.
+// Write a program to accept five different numbers by creating a class called friendfuncl and friendfunc2 taking 2 and 3 arguments respectively and calculate the average of these numbers by passing object of the class to friend function
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
-class Bank
+class friendfuncl;
+
+class friendfunc2;
+
+class friendfuncl
 {
-    string name;
-    float balance;
-    float rate;
-    float time;
+    float a, b, c, d, e;
 
 public:
-    Bank(float b, float r)
+    friendfuncl(float a, float b, float c, float d, float e)
     {
-        balance = b;
-        rate = r;
+        this->a = a;
+        this->b = b;
+        this->c = c;
+        this->d = d;
+        this->e = e;
     }
 
-    void input()
-    {
-        cin.ignore(); // Clear the newline character from the input buffer
-        cout << "Enter the name of the person: ";
-        getline(cin, name);
-        cout << "Enter the time frame in years: ";
-        cin >> time;
-    }
-
-    float calculate()
-    {
-        float compoundInterest = balance * pow((1 + rate), time);
-        return compoundInterest;
-    }
-
-    ~Bank()
-    {
-        cout << "Destructor called for " << name << endl;
-    }
+    friend float average(friendfuncl f, friendfunc2 g);
 };
+
+class friendfunc2
+{
+    float a, b, c;
+
+public:
+    friendfunc2(float a, float b, float c)
+    {
+        this->a = a;
+        this->b = b;
+        this->c = c;
+    }
+
+    friend float average(friendfuncl f, friendfunc2 g);
+};
+
+float average(friendfuncl f, friendfunc2 g)
+{
+    return (f.a + f.b + f.c + f.d + f.e + g.a + g.b + g.c) / 8;
+}
 
 int main()
 {
-    float balance, rate;
-    cout << "Enter the initial balance: ";
-    cin >> balance;
-    cout << "Enter the rate of interest (in decimal form, e.g., 0.05 for 5%): ";
-    cin >> rate;
+    float a, b, c, d, e;
+    cout << "Enter five numbers: ";
+    cin >> a >> b >> c >> d >> e;
 
-    Bank b(balance, rate);
-    b.input();
-    cout << "The balance after " << b.calculate() << " years is: " << b.calculate() << endl;
+    friendfuncl f(a, b, c, d, e);
+
+    float x, y, z;
+    cout << "Enter three numbers: ";
+    cin >> x >> y >> z;
+
+    friendfunc2 g(x, y, z);
+
+    cout << "The average of the numbers is: " << average(f, g) << endl;
 
     return 0;
 }

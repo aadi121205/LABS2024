@@ -1,41 +1,59 @@
-// Write a C++ program to perform dilfferent arithmetic operation such as addition, subtraction, division, modulus and multiplication using inline function.
+// Write a C++ program to create a simple banking system in which the initial halance and the rate of interest are read from the keyboard and these values are initialized using the constructor. 
+// The destructor member function is defined in this program to destroy the class object created using constructor member function. This program consists of following member functions:
+// The member functions are as follows 
+// 1. A function to take the input name of the person along with time frame.
+// 2. Return the balance after that time frame using the ROI.
 
-#include <iostream>
+#include <bits/stdc++.h>
+
 using namespace std;
 
-inline int add(int a, int b) {
-    return a + b;
-}
+class Bank
+{
+    string name;
+    float balance;
+    float rate;
+    float time;
 
-inline int subtract(int a, int b) {
-    return a - b;
-}
+public:
+    Bank(float b, float r)
+    {
+        balance = b;
+        rate = r;
+    }
 
-inline int multiply(int a, int b) {
-    return a * b;
-}
+    void input()
+    {
+        cin.ignore(); // Clear the newline character from the input buffer
+        cout << "Enter the name of the person: ";
+        getline(cin, name);
+        cout << "Enter the time frame in years: ";
+        cin >> time;
+    }
 
-inline float divide(int a, int b) {
-    return static_cast<float>(a) / b;
-}
+    float calculate()
+    {
+        float compoundInterest = balance * pow((1 + rate), time);
+        return compoundInterest;
+    }
 
-inline int mod(int a, int b) {
-    return a % b;
-}
+    ~Bank()
+    {
+        cout << "Destructor called for " << name << endl;
+    }
+};
 
-int main() {
-    int a, b;
-    cout << "Enter two numbers:" << endl;
-    cout << "a: ";
-    cin >> a;
-    cout << "b: ";
-    cin >> b;
+int main()
+{
+    float balance, rate;
+    cout << "Enter the initial balance: ";
+    cin >> balance;
+    cout << "Enter the rate of interest (in decimal form, e.g., 0.05 for 5%): ";
+    cin >> rate;
 
-    cout << "Addition: " << add(a, b) << endl;
-    cout << "Subtraction: " << subtract(a, b) << endl;
-    cout << "Multiplication: " << multiply(a, b) << endl;
-    cout << "Division: " << divide(a, b) << endl;
-    cout << "Modulus: " << mod(a, b) << endl;
+    Bank b(balance, rate);
+    b.input();
+    cout << "The balance is: " << b.calculate() << endl;
 
     return 0;
 }
