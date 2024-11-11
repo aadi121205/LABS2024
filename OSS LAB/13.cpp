@@ -1,61 +1,95 @@
-// Write a program to aceept the student detail such as name and 3 different marks get_data0 method and display the name and average of marks using displayO method. Define a friend class for calculating the average of marks using the method mark_ avg()
+// Consider a class network of figure given below. The class master derives information from both account and admin classes which in turn derived derive information from the class person,
+// Define all the four classes and write a program to create, update and display the information contained in master objects. Also demonstrate the use of different access specifiers by means of member variables and member functions
 
 #include <iostream>
+
 using namespace std;
 
-class Student; // Forward declaration
-
-class Student {
-private:
+class Person
+{
+protected:
     string name;
-    int marks[3];
+    int age;
 
 public:
-    // Method to get student details
-    void get_data() {
-        cout << "Enter student name: ";
+    void getDetails()
+    {
+        cout << "Enter name: ";
         cin >> name;
-        cout << "Enter marks in 3 subjects: ";
-        for (int i = 0; i < 3; i++) {
-            cin >> marks[i];
-        }
+        cout << "Enter age: ";
+        cin >> age;
     }
 
-    // Method to calculate average marks
-
-    float mark_avg() {
-        int sum = 0;
-        for (int i = 0; i < 3; i++) {
-            sum += marks[i];
-        }
-        return static_cast<float>(sum) / 3;
-    }
-
-    // Method to display student details
-    void display() {
+    void displayDetails()
+    {
         cout << "Name: " << name << endl;
-        cout << "Average marks: " << mark_avg() << endl;
+        cout << "Age: " << age << endl;
     }
-
-    // Friend class declaration
-    friend class FriendClass;
 };
 
-class FriendClass {
+class Account : public Person
+{
+
+protected:
+    string accountNumber;
+
 public:
-    // Friend function to calculate average marks
-    static float mark_avg(Student s) {
-        int sum = 0;
-        for (int i = 0; i < 3; i++) {
-            sum += s.marks[i];
-        }
-        return static_cast<float>(sum) / 3;
+    void getAccountDetails()
+    {
+        cout << "Enter account number: ";
+        cin >> accountNumber;
+    }
+
+    void displayAccountDetails()
+    {
+        displayDetails();
+        cout << "Account number: " << accountNumber << endl;
     }
 };
 
-int main() {
-    Student s;
-    s.get_data();
-    s.display();
+class Admin : public Person
+{
+
+protected:
+    string adminID;
+
+public:
+    void getAdminDetails()
+    {
+        cout << "Enter admin ID: ";
+        cin >> adminID;
+    }
+
+    void displayAdminDetails()
+    {
+        displayDetails();
+        cout << "Admin ID: " << adminID << endl;
+    }
+};
+
+class Master : public Account, public Admin
+{
+
+public:
+    void getMasterDetails()
+    {
+        Account::getDetails();
+        getAccountDetails();
+        Admin::getDetails();
+        getAdminDetails();
+    }
+
+    void displayMasterDetails()
+    {
+        displayAccountDetails();
+        displayAdminDetails();
+    }
+};
+
+int main()
+{
+    Master m;
+    m.getMasterDetails();
+    m.displayMasterDetails();
     return 0;
 }

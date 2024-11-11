@@ -1,95 +1,38 @@
-// Consider a class network of figure given below. The class master derives information from both account and admin classes which in turn derived derive information from the class person,
-// Define all the four classes and write a program to create, update and display the information contained in master objects. Also demonstrate the use of different access specifiers by means of member variables and member functions
+// Write a C++ program to create three objects for a class named pntr_obj with data members such as roll_no & name. Create a member function set_data() for setting the data values and print0 member function to print which object has invoked it using "this' pointer.
 
 #include <iostream>
 
 using namespace std;
 
-class Person
+class pntr_obj
 {
-protected:
+    int roll_no;
     string name;
-    int age;
 
 public:
-    void getDetails()
+    void set_data(int r, string n)
     {
-        cout << "Enter name: ";
-        cin >> name;
-        cout << "Enter age: ";
-        cin >> age;
+        roll_no = r;
+        name = n;
     }
 
-    void displayDetails()
+    void print()
     {
-        cout << "Name: " << name << endl;
-        cout << "Age: " << age << endl;
-    }
-};
-
-class Account : public Person
-{
-
-protected:
-    string accountNumber;
-
-public:
-    void getAccountDetails()
-    {
-        cout << "Enter account number: ";
-        cin >> accountNumber;
-    }
-
-    void displayAccountDetails()
-    {
-        displayDetails();
-        cout << "Account number: " << accountNumber << endl;
-    }
-};
-
-class Admin : public Person
-{
-
-protected:
-    string adminID;
-
-public:
-    void getAdminDetails()
-    {
-        cout << "Enter admin ID: ";
-        cin >> adminID;
-    }
-
-    void displayAdminDetails()
-    {
-        displayDetails();
-        cout << "Admin ID: " << adminID << endl;
-    }
-};
-
-class Master : public Account, public Admin
-{
-
-public:
-    void getMasterDetails()
-    {
-        Account::getDetails();
-        getAccountDetails();
-        Admin::getDetails();
-        getAdminDetails();
-    }
-
-    void displayMasterDetails()
-    {
-        displayAccountDetails();
-        displayAdminDetails();
+        cout << "Object with roll number " << roll_no << " and name " << name << " has invoked this function." << endl;
     }
 };
 
 int main()
 {
-    Master m;
-    m.getMasterDetails();
-    m.displayMasterDetails();
+    pntr_obj obj1, obj2, obj3;
+
+    obj1.set_data(1, "Aaditya");
+    obj2.set_data(2, "Bhatia");
+    obj3.set_data(3, "is");
+
+    obj1.print();
+    obj2.print();
+    obj3.print();
+
     return 0;
 }

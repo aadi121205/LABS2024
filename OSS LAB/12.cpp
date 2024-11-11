@@ -1,52 +1,96 @@
-// Write a program to accept five different numbers by creating a class called friendfuncl and friendfunc2 taking 2 and 3 arguments respectively and calculate the average of these numbers by passing obiect of the class to friend function
+// WAP to perform string operations using operator overloading in C++i, = String Copy l. =, Equality ii. Concatenation
 
 #include <iostream>
+
 using namespace std;
 
-class FriendFunc2; // Forward declaration
-
-class FriendFunc1 {
-private:
-    int num1, num2;
+class String {
+    char *str;
+    int len;
 
 public:
-    // Constructor to initialize two numbers
-    FriendFunc1(int a, int b) : num1(a), num2(b) {}
+    String() {
+        str = new char[1];
+        str[0] = '\0';
+        len = 0;
+    }
 
-    // Friend function declaration
-    friend float calculateAverage(FriendFunc1, FriendFunc2);
+    String(const char *s) {
+        len = 0;
+        while (s[len] != '\0') {
+            len++;
+        }
+        str = new char[len + 1];
+        for (int i = 0; i < len; i++) {
+            str[i] = s[i];
+        }
+        str[len] = '\0';
+    }
+
+    String(const String &s) {
+        len = s.len;
+        str = new char[len + 1];
+        for (int i = 0; i < len; i++) {
+            str[i] = s.str[i];
+        }
+        str[len] = '\0';
+    }
+
+    ~String() {
+        delete[] str;
+    }
+
+    void display() {
+        cout << str << endl;
+    }
+
+    String operator=(const String &s) {
+        len = s.len;
+        delete[] str;
+        str = new char[len + 1];
+        for (int i = 0; i < len; i++) {
+            str[i] = s.str[i];
+        }
+        str[len] = '\0';
+        return *this;
+    }
+
+    String operator+(const String &s) {
+        String temp;
+        temp.len = len + s.len;
+        delete[] temp.str;
+        temp.str = new char[temp.len + 1];
+        for (int i = 0; i < len; i++) {
+            temp.str[i] = str[i];
+        }
+        for (int i = 0; i < s.len; i++) {
+            temp.str[len + i] = s.str[i];
+        }
+        temp.str[temp.len] = '\0';
+        return temp;
+    }
+
+    bool operator==(const String &s) {
+        if (len != s.len) {
+            return false;
+        }
+        for (int i = 0; i < len; i++) {
+            if (str[i] != s.str[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 };
-
-class FriendFunc2 {
-private:
-    int num3, num4, num5;
-
-public:
-    // Constructor to initialize three numbers
-    FriendFunc2(int a, int b, int c) : num3(a), num4(b), num5(c) {}
-
-    // Friend function declaration
-    friend float calculateAverage(FriendFunc1, FriendFunc2);
-};
-
-// Friend function definition
-float calculateAverage(FriendFunc1 obj1, FriendFunc2 obj2) {
-    int sum = obj1.num1 + obj1.num2 + obj2.num3 + obj2.num4 + obj2.num5;
-    return static_cast<float>(sum) / 5;  // Calculate and return the average
-}
 
 int main() {
-    int a, b, c, d, e;
-    cout << "Enter five numbers: ";
-    cin >> a >> b >> c >> d >> e;
+    String s1("Hello"), s2("World"), s3;
 
-    // Creating objects of FriendFunc1 and FriendFunc2
-    FriendFunc1 obj1(a, b);         // First two numbers
-    FriendFunc2 obj2(c, d, e);      // Last three numbers
+    s3 = s1 + s2;
+    s3.display();
 
-    // Calculate and display the average using the friend function
-    float average = calculateAverage(obj1, obj2);
-    cout << "The average of the five numbers is: " << average << endl;
+    cout << (s1 == s2) << endl;
+    cout << (s1 == s1) << endl;
 
     return 0;
 }
