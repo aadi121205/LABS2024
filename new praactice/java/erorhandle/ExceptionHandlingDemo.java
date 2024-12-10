@@ -5,6 +5,8 @@ class CustomException extends Exception {
     }
 }
 
+// Main class
+
 public class ExceptionHandlingDemo {
 
     // Method that throws a custom exception
